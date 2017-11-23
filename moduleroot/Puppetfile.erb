@@ -1,0 +1,26 @@
+forge '<%= @configs['forge_url'] %>
+#
+# Here are some generic modules
+#
+<% @configs['shared_generic'].each do | module_name, value| -%>
+mod <%= @configs['format'] % ["'#{module_name}'", "'#{value['version']}'"] %>
+<% end -%>
+<% @configs['generic'].each do | module_name, value| -%>
+mod <%= @configs['format'] % ["'#{module_name}'", "'#{value['version']}'"] %>
+<% end %>#
+# and the EM modules
+#
+<% @configs['shared_em'].each do | module_name, value| -%>
+mod <%= @configs['format'] % ["'enterprisemodules-#{module_name}'", "'#{value['version']}'"] %>
+<% end -%>
+<% @configs['em'].each do | module_name, value| -%>
+mod <%= @configs['format'] % ["'enterprisemodules-#{module_name}'", "'#{value['version']}'"] %>
+<% end %>#
+# Modules that are part of the control repo. R10K doesn't need to touch these
+#
+<% @configs['shared_local'].each do | module_name| -%>
+mod <%= @configs['format'] % ["'#{module_name}'", 'local: true'] %>
+<% end -%>
+<% @configs['local'].each do | module_name| -%>
+mod <%= @configs['format'] % ["'#{module_name}'", 'local: true'] %>
+<% end %>
